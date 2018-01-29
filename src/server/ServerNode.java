@@ -3,6 +3,8 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,13 +20,17 @@ public class ServerNode implements Runnable{
 
     public ServerNode(int port, boolean stopped){
         this.port = port;
+        clients = new ArrayList<>();
+        threads = new HashMap<>();
     }
 
     @Override
     public void run() {
         try {
             openSocket();
-            listen();
+            while(true){
+                listen();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,7 +1,7 @@
 package server;
 
-import jdk.jfr.internal.LogLevel;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 public class Server {
     private List<ServerNode> nodes;
     private Map<ServerNode,Thread> threads;
+
+    public Server(){
+        nodes = new ArrayList<>();
+        threads = new HashMap<>();
+    }
 
     public ServerNode createNode(int port){
         ServerNode node = new ServerNode(port,false);
